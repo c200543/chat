@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>{{ config('app.name', 'Chat App') }}</title>
 
@@ -24,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                  Chat App
+                  <i class="fas fa-comments"></i> Chat App
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,11 +42,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> {{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> {{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -75,6 +76,23 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+    </div>
+    <div class="py-4 " style="margin-top:180px;background-color: #343a40; opacity:70%" >
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-4 text-center ">
+                    <img src="./images/analytics-static-icon.gif" style="width:300px; height:300px; border-radius: 50%; " alt="">
+                </div>
+                <div class="col-lg-4 text-center ">
+                    <img style="width:300px; height:300px;border-radius: 50%" src="./images/agora.png"  alt="">
+                </div>
+                <div class="col-lg-4 text-center ">
+                    <img style="width:300px; height:300px;border-radius: 50%" src="./images/chat.png"  alt="">
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>

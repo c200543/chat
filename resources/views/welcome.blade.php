@@ -164,20 +164,20 @@
                 <!-- First row services -->
                 <div class="row first-services">
                     <div class="col-sm-12 col-md-4 service">
-                        <i class="fa fa-desktop"></i>
-                        <h4 class="service-heading">Web and Graphic Design</h4>
-                        <p class="text-services">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        <h4 class="service-heading">Chat with your friend</h4>
+                        <p class="text-services"></p>
                     </div>
                     <div class="col-sm-12 col-md-4 service">
-                        <i class="fa fa-magic"></i>
-                        <h4 class="service-heading">Branding</h4>
-                        <p class="text-services">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <h4 class="service-heading">Call Video</h4>
+{{--                         <p class="text-services">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+ --}}                    </div>
                     <div class="col-sm-12 col-md-4 service">
-                        <i class="fa fa-cubes"></i>
-                        <h4 class="service-heading">Front End Development</h4>
-                        <p class="text-services">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <h4 class="service-heading">Screen share</h4>
+{{--                         <p class="text-services">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+ --}}                    </div>
                 </div>
                 <!-- Second row services -->
                 <div class="row second-services">

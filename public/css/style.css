@@ -1,4 +1,4 @@
-/* 
+/*
 	xBe by TEMPLATE STOCK
 	templatestock.co @templatestock
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
@@ -688,7 +688,7 @@ section h2.section-heading {
     text-align: center;
     text-transform: uppercase !important;
     color: #058BCE;
-    
+
 }
 
 section h3.section-subheading {
@@ -1158,7 +1158,7 @@ section#portfolio {
 .portfolio-wrapper .overlay-subheading {
     font-family: 'Droid Serif', serif;
     text-transform: uppercase;
-    
+
     font-size: 18px;
 }
 
@@ -1508,7 +1508,7 @@ section#testimonials .section-subheading {
     text-transform: none;
     font-family: 'Source Sans Pro', sans-serif;
     padding-top: 7px;
-    
+
     font-weight: 300;
 }
 
@@ -1556,7 +1556,7 @@ section#testimonials .section-subheading {
 }
 
 #success {
-    padding: 20px 0; 
+    padding: 20px 0;
 }
 
 section#contact {
