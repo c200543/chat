@@ -14,10 +14,6 @@
 .ui-helper-hidden {
 	display: none;
 }
-body {
-        background: #9053c7 !important;
-
-}
 .ui-helper-hidden-accessible {
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -1929,7 +1925,7 @@ h3,
 
 h4,
 .h4 {
-  font-size: 1.35rem;
+  font-size: 2rem;
 }
 
 h5,
@@ -10190,7 +10186,7 @@ button.bg-dark:focus {
 
 .pt-4,
 .py-4 {
-  padding-top: 1.5rem !important;
+  padding-top: 7px !important;
 }
 
 .pr-4,

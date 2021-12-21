@@ -1,87 +1,63 @@
 <template>
   <div class="hello">
-    <div class="agora-title-box">
+    <div class="loading">
+      <p class="loader"></p>
+      <p>Please wait</p>
+      <span><i></i><i></i></span>
+    </div>
 
-      <div class="agora-title">Agora Basic Video Call</div>
     </div>
-    <div class='agora-box'>
-      <div class="agora-input">
-        <div class="agora-text">* Appid</div>
-        <el-input v-model="option.appid" placeholder="Appid" clearable></el-input>
-      </div>
-      <div class="agora-input">
-        <div class="agora-text">Token</div>
-        <el-input v-model="option.token" placeholder="Token" clearable></el-input>
-      </div>
-      <div class="agora-input">
-        <div class="agora-text">* Channel Name</div>
-        <el-input v-model="option.channel" placeholder="Channel Name" clearable></el-input>
-      </div>
-      <div class="agora-button">
-        <el-button id="Join" type="primary" @click="joinEvent" :disabled='disableJoin'>join</el-button>
-        <el-button type="primary" @click='leaveEvent' plain :disabled='!disableJoin'>leave</el-button>
-      </div>
-    </div>
-    <div class="agora-view">
-      <div class="agora-video">
-        <StreamPlayer :stream="localStream" :domId="localStream.getId()" v-if="localStream"></StreamPlayer>
-      </div>
-      <div class="agora-video" :key="index" v-for="(remoteStream, index) in remoteStreams">
-        <StreamPlayer :stream="remoteStream" :domId="remoteStream.getId()"></StreamPlayer>
 
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import RTCClient from "../agora-rtc-client";
 import StreamPlayer from "./stream-player";
-import { log } from '../utils/utils'
+import { log } from "../utils/utils";
 
 export default {
   components: {
-    StreamPlayer
-  }, props: ['usertest','arr'],
-  data () {
+    StreamPlayer,
+  },
+  props: ["usertest", "arr"],
+  data() {
     return {
-      messages:[],
-      data:'',
-      appIdReceive:this.arr[0],
-      appTokenReceive:this.arr[1],
-      appChannelReceive:this.arr[2],
-      userTest:this.usertest,
+      messages: [],
+      data: "",
+      appIdReceive: this.arr[0],
+      appTokenReceive: this.arr[1],
+      appChannelReceive: this.arr[2],
+      userTest: this.usertest,
       option: {
-        appid: '',
-        token: '',
+        appid: "",
+        token: "",
         uid: null,
-        channel: '',
-
+        channel: "",
       },
 
       disableJoin: false,
       localStream: null,
       remoteStreams: [],
-    }
+    };
   },
 
-   created() {
-
-      },
+  created() {},
 
   mounted() {
-     var href = "https://minhanh234.github.io/chat-video-project/"
-      window.location=href;
-      if( this.userTest!=123) {
-     var href = "https://minhanh234.github.io/chat-video-project/"
-      window.location=href;
+    setTimeout(function () {
+      var href = "https://minhanh234.github.io/chat-video-project/";
+      window.location = href;
+      if (this.userTest != 123) {
+        var href = "https://minhanh234.github.io/chat-video-project/";
+        window.location = href;
+      } else {
+        var href = "https://minhanh234.github.io/chat-video-project/";
+        window.location = href;
       }
-      else {
-            var href = "https://minhanh234.github.io/chat-video-project/"
-      window.location=href;
+    }, 2000);
 
-      }
-       /*   Echo.private('call')
+    /*   Echo.private('call')
             .listen('callVideoEvent', (e) => {
                 console.log(e)
                 this.messages.push({
@@ -89,139 +65,270 @@ export default {
                 user: e.user
                 });
             }); */
-
-
-
   },
 
   methods: {
-    joinEvent () {
-
-      if(!this.option.appid) {
-        this.judge('Appid')
-        return
+    joinEvent() {
+      if (!this.option.appid) {
+        this.judge("Appid");
+        return;
       }
-      if(!this.option.channel) {
-        this.judge('Channel Name')
-        return
+      if (!this.option.channel) {
+        this.judge("Channel Name");
+        return;
       }
-      this.rtc.joinChannel(this.option).then(() => {
-        this.$message({
-          message: 'Join Success',
-          type: 'success'
-        });
-        this.rtc.publishStream().then((stream) => {
+      this.rtc
+        .joinChannel(this.option)
+        .then(() => {
           this.$message({
-            message: 'Publish Success',
-            type: 'success'
+            message: "Join Success",
+            type: "success",
           });
-          this.localStream = stream
-        }).catch((err) => {
-          this.$message.error('Publish Failure');
-          log('publish local error', err)
+          this.rtc
+            .publishStream()
+            .then((stream) => {
+              this.$message({
+                message: "Publish Success",
+                type: "success",
+              });
+              this.localStream = stream;
+            })
+            .catch((err) => {
+              this.$message.error("Publish Failure");
+              log("publish local error", err);
+            });
         })
-      }).catch((err) => {
-        this.$message.error('Join Failure');
-        log('join channel error', err)
-      })
-      this.disableJoin = true
-    },
-    leaveEvent () {
-      this.disableJoin = false
-      this.rtc.leaveChannel().then(() => {
-        this.$message({
-          message: 'Leave Success',
-          type: 'success'
+        .catch((err) => {
+          this.$message.error("Join Failure");
+          log("join channel error", err);
         });
-      }).catch((err) => {
-        this.$message.error('Leave Failure')
-        log('leave error', err)
-      })
-      this.localStream = null
-      this.remoteStreams = []
+      this.disableJoin = true;
+    },
+    leaveEvent() {
+      this.disableJoin = false;
+      this.rtc
+        .leaveChannel()
+        .then(() => {
+          this.$message({
+            message: "Leave Success",
+            type: "success",
+          });
+        })
+        .catch((err) => {
+          this.$message.error("Leave Failure");
+          log("leave error", err);
+        });
+      this.localStream = null;
+      this.remoteStreams = [];
     },
     judge(detail) {
       this.$notify({
-        title: 'Notice',
+        title: "Notice",
         message: `Please enter the ${detail}`,
-        position: 'top-left',
-        type: 'warning'
+        position: "top-left",
+        type: "warning",
       });
     },
   },
   created() {
-    this.rtc = new RTCClient()
-    let rtc = this.rtc
-    rtc.on('stream-added', (evt) => {
-      let {stream} = evt
-      log("[agora] [stream-added] stream-added", stream.getId())
-      rtc.client.subscribe(stream)
-    })
+    this.rtc = new RTCClient();
+    let rtc = this.rtc;
+    rtc.on("stream-added", (evt) => {
+      let { stream } = evt;
+      log("[agora] [stream-added] stream-added", stream.getId());
+      rtc.client.subscribe(stream);
+    });
 
-    rtc.on('stream-subscribed', (evt) => {
-      let {stream} = evt
-      log("[agora] [stream-subscribed] stream-added", stream.getId())
+    rtc.on("stream-subscribed", (evt) => {
+      let { stream } = evt;
+      log("[agora] [stream-subscribed] stream-added", stream.getId());
       if (!this.remoteStreams.find((it) => it.getId() === stream.getId())) {
-        this.remoteStreams.push(stream)
+        this.remoteStreams.push(stream);
       }
-    })
+    });
 
-    rtc.on('stream-removed', (evt) => {
-      let {stream} = evt
-      log('[agora] [stream-removed] stream-removed', stream.getId())
-      this.remoteStreams = this.remoteStreams.filter((it) => it.getId() !== stream.getId())
-    })
+    rtc.on("stream-removed", (evt) => {
+      let { stream } = evt;
+      log("[agora] [stream-removed] stream-removed", stream.getId());
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== stream.getId()
+      );
+    });
 
-    rtc.on('peer-online', (evt) => {
-      this.$message(`Peer ${evt.uid} is online`)
-    })
+    rtc.on("peer-online", (evt) => {
+      this.$message(`Peer ${evt.uid} is online`);
+    });
 
-    rtc.on('peer-leave', (evt) => {
-      this.$message(`Peer ${evt.uid} already leave`)
-      this.remoteStreams = this.remoteStreams.filter((it) => it.getId() !== evt.uid)
-    })
-  }
- }
+    rtc.on("peer-leave", (evt) => {
+      this.$message(`Peer ${evt.uid} already leave`);
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== evt.uid
+      );
+    });
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .agora-box {
+.hello {
+  background: #595bd4 !important;
+  font-family: "Titillium Web", sans-serif;
+  width:2000px !important;
+  height:1000px !important;
 
+}
+.loader {
+  margin-left: -15px;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  .agora-title {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    color: #2c3e50;
+  100% {
+    transform: rotate(360deg);
   }
-  .agora-view {
-    display: flex;
-    flex-wrap: wrap;
+}
+
+.loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  width: 100px;
+  color: #fff;
+  margin: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.loading span {
+  position: absolute;
+  height: 10px;
+  width: 84px;
+  top: 220px;
+  overflow: hidden;
+}
+.loading span > i {
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  -webkit-animation: wait 4s infinite;
+  -moz-animation: wait 4s infinite;
+  -o-animation: wait 4s infinite;
+  animation: wait 4s infinite;
+}
+.loading span > i:nth-of-type(1) {
+  left: -28px;
+  background: yellow;
+}
+.loading span > i:nth-of-type(2) {
+  left: -21px;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  background: lightgreen;
+}
+
+@-webkit-keyframes wait {
+  0% {
+    left: -7px;
   }
-  .agora-video {
-    width: 320px;
-    height: 240px;
-    margin: 20px;
+  30% {
+    left: 52px;
   }
-  .agora-input {
-    margin: 20px;
-    width: 320px;
+  60% {
+    left: 22px;
   }
-  .agora-text {
-    margin: 5px;
-    font-size: 16px;
-    font-weight: bold;
+  100% {
+    left: 100px;
   }
-  .agora-button {
-    display: flex;
-    width: 160px;
-    justify-content: space-between;
-    margin: 20px;
+}
+@-moz-keyframes wait {
+  0% {
+    left: -7px;
   }
-  .agora-video {
-    width: 320px;
-    height: 240px;
+  30% {
+    left: 52px;
   }
+  60% {
+    left: 22px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+@-o-keyframes wait {
+  0% {
+    left: -7px;
+  }
+  30% {
+    left: 52px;
+  }
+  60% {
+    left: 22px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+@keyframes wait {
+  0% {
+    left: -7px;
+  }
+  30% {
+    left: 52px;
+  }
+  60% {
+    left: 22px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+.agora-box {
+}
+.agora-title {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+}
+.agora-view {
+  display: flex;
+  flex-wrap: wrap;
+}
+.agora-video {
+  width: 320px;
+  height: 240px;
+  margin: 20px;
+}
+.agora-input {
+  margin: 20px;
+  width: 320px;
+}
+.agora-text {
+  margin: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.agora-button {
+  display: flex;
+  width: 160px;
+  justify-content: space-between;
+  margin: 20px;
+}
+.agora-video {
+  width: 320px;
+  height: 240px;
+}
 </style>

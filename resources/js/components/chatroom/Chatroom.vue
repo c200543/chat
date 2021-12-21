@@ -934,6 +934,7 @@ export default {
 }
 
 .app {
+
   border: 2px solid #031426;
   width: 95%;
   margin: 5px auto;
@@ -1227,7 +1228,7 @@ export default {
 
 .friends-chat {
   /* border: 3px solid beige; */
-  padding-top: 5px;
+  padding-top: 20px !important;
   padding-bottom: 5px;
   display: grid;
   grid-auto-flow: column;

@@ -26,6 +26,7 @@
 */
 
 body {
+    background: #595BD4 !important;
     overflow-x: hidden;
     font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;

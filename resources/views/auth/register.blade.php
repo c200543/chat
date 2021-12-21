@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container  mt-5 mb-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -72,7 +72,22 @@
                 </div>
             </div>
         </div>
+        <div class="py-4 " id="footer" style="margin-top:50px;background-color: #343a40; opacity:70%">
+            <div class="container  mt-5 mb-1">
+                <div class="row">
+                    <div class="col-lg-4 text-center ">
+                        <img src="./images/analytics-static-icon.gif"
+                            style="width:300px; height:300px; border-radius: 50%; " alt="">
+                    </div>
+                    <div class="col-lg-4 text-center ">
+                        <img style="width:300px; height:300px;border-radius: 50%" src="./images/agora.png" alt="">
+                    </div>
+                    <div class="col-lg-4 text-center ">
+                        <img style="width:300px; height:300px;border-radius: 50%" src="./images/chat.png" alt="">
+                    </div>
+                </div>
+            </div>
     </div>
-   
-</div>
+    </div>
+
 @endsection
