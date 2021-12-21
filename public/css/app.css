@@ -1937,7 +1937,6 @@ h6,
 .h6 {
   font-size: 0.9rem;
 }
-
 .lead {
   font-size: 1.125rem;
   font-weight: 300;
@@ -10186,7 +10185,7 @@ button.bg-dark:focus {
 
 .pt-4,
 .py-4 {
-  padding-top: 7px !important;
+  padding-top: 1.5rem !important;
 }
 
 .pr-4,

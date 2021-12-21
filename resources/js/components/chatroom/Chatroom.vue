@@ -413,7 +413,7 @@ export default {
           }
 
 
-      }
+      }, 
   },
   methods: {
     accept () {
@@ -457,6 +457,7 @@ export default {
             notif: e.payload.notification,
             sender: e.payload.sender
           });
+            window.location.reload();
         }
 
         console.log('this is from sendnotification event.');
